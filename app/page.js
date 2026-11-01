@@ -1,22 +1,36 @@
-import Agenda from '@/components/Agenda';
-import ChannelsGrid from '@/components/ChannelsGrid';
+import Agenda from './components/Agenda';
+import ChannelsGrid from './components/ChannelsGrid';
+import {
+  IntroSection,
+  MatchesSection,
+  LeaguesSection,
+  GuideSection,
+  FaqSection,
+} from './components/SeoContent';
 
 export default function HomePage() {
   return (
     <div className="space-y-8">
-      {/* Dynamic SEO Intro */}
-      <section className="text-gray-300 space-y-3">
-        <h1 className="text-3xl font-extrabold text-white">Partidos de Fútbol en Vivo</h1>
-        <p className="text-slate-400 leading-relaxed">
-          Consulta la agenda futbolística diaria con horarios, torneos y señales deportivas para consultar los principales partidos desde un solo lugar.
-        </p>
-      </section>
+      {/* H1 + ¿Qué es Futbol Libre? */}
+      <IntroSection />
 
-      {/* Dynamic Agenda from API */}
+      {/* Agenda desde la API */}
       <Agenda />
 
-      {/* Channels Grid */}
+      {/* Partidos de hoy + marcadores en vivo */}
+      <MatchesSection />
+
+      {/* Canales */}
       <ChannelsGrid />
+
+      {/* Torneos, canales y ligas en español */}
+      <LeaguesSection />
+
+      {/* Cómo encontrar un partido, dispositivos, seguridad, legal */}
+      <GuideSection />
+
+      {/* Preguntas frecuentes */}
+      <FaqSection />
     </div>
   );
 }
