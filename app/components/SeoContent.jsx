@@ -19,7 +19,15 @@ export function IntroSection() {
 
       <h2 className={h2}>¿Qué es Futbol Libre?</h2>
       <p className={p}>
-        Libre Futbol es como se le llama a las páginas web con información sobre fútbol.
+        <a
+          href="https://futbollibre.onl/"
+          target="_blank"
+          rel="noopener"
+          className="text-[#167a36] font-semibold underline hover:text-green-700"
+        >
+          Libre Futbol
+        </a>{' '}
+        es como se le llama a las páginas web con información sobre fútbol.
         Dependiendo de la página, ahí hay calendarios, noticias deportivas, marcadores en vivo,
         novedades de los torneos o datos sobre las transmisiones de partidos en vivo.
       </p>
@@ -226,6 +234,17 @@ export function GuideSection() {
         también en los sitios de tu país. Además, hay plataformas en línea que ofrecen gratis
         resúmenes, entrevistas y análisis después de cada partido.
       </p>
+       <h2 className={h2}>¿Qué es Futbol Libre?</h2>
+      <p className={p}>    Entra a {' '}
+        <a
+          href="https://futbollibre.onl/"
+          target="_blank"
+          rel="noopener"
+          className="text-[#167a36] font-semibold underline hover:text-green-700"
+        >
+               Fútbol Libre 
+        </a>{' '}
+    y consulta los partidos de fútbol de hoy, los horarios, las competiciones y los canales deportivos en vivo. Sigue los juegos de Argentina, México, Chile y más, y míralos en línea gratis.</p>
     </section>
   );
 }

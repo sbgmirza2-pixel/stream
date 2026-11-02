@@ -27,8 +27,7 @@ export default function Footer() {
             <span className="text-xl font-bold text-[#167a36]">Fútbol Libre</span>
           </Link>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Agenda diaria de partidos, horarios y canales deportivos para seguir el fútbol desde un
-            solo lugar.
+            Fútbol Libre provides today's football schedule, kickoff times, competitions and sports channels to follow live matches from different countries.
           </p>
         </div>
 
