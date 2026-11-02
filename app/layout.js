@@ -4,13 +4,9 @@ import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 
 export const metadata = {
-  title: 'Futbol Libre - Partidos de Fútbol en Vivo y Canales Online',
+  title: 'Futbol Libre: mira fútbol en vivo, Liga MX y canales deportivos en línea',
   description:
-    'Todo sobre Futbol Libre: calendario de partidos, marcadores en vivo, compatibilidad con dispositivos, problemas con las transmisiones y formas seguras de seguir el fútbol en línea.',
-  icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
-  },
+    'Mira fútbol en vivo en Fútbol Libre con partidos de la Liga MX, LaLiga, Champions League y Copa Libertadores. Consulta los calendarios y ve deportes en línea en HD, gratis.',
 };
 
 export default function RootLayout({ children }) {
