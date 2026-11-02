@@ -234,7 +234,7 @@ export function GuideSection() {
         también en los sitios de tu país. Además, hay plataformas en línea que ofrecen gratis
         resúmenes, entrevistas y análisis después de cada partido.
       </p>
-       <h2 className={h2}>¿Qué es Futbol Libre?</h2>
+       
       <p className={p}>    Entra a {' '}
         <a
           href="https://futbollibre.onl/"
