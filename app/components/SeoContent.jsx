@@ -1,15 +1,19 @@
 // Contenido SEO del cliente. Cada bloque se exporta por separado
 // para poder colocarlo en distintas partes de la página (ver page.js).
+import Link from 'next/link';
 
 const h2 = 'text-2xl font-bold text-[#167a36] mt-2 mb-3';
 const p = 'text-gray-700 text-sm md:text-base leading-relaxed';
 const ul = 'list-disc pl-6 space-y-1 text-gray-700 text-sm md:text-base';
+const link = 'text-[#167a36] font-semibold underline hover:text-green-700';
 
 /* 1) Arriba de todo: H1 + ¿Qué es Futbol Libre? */
 export function IntroSection() {
   return (
-    <section className="space-y-3">
-      <h1 className="text-3xl font-bold text-[#167a36]">Futbol Libre</h1>
+    <section className="space-y-3" aria-labelledby="intro-titulo">
+      <h1 id="intro-titulo" className="text-3xl font-bold text-[#167a36]">
+        Futbol Libre
+      </h1>
       <p className={p}>
         Quien sigue el fútbol casi siempre busca la manera más fácil de encontrar información en
         internet. El nombre Futbol Libre se asocia con páginas de fútbol donde se pueden revisar
@@ -19,14 +23,9 @@ export function IntroSection() {
 
       <h2 className={h2}>¿Qué es Futbol Libre?</h2>
       <p className={p}>
-        <a
-          href="https://futbollibre.onl/"
-          target="_blank"
-          rel="noopener"
-          className="text-[#167a36] font-semibold underline hover:text-green-700"
-        >
+        <Link href="/" className={link}>
           Libre Futbol
-        </a>{' '}
+        </Link>{' '}
         es como se le llama a las páginas web con información sobre fútbol.
         Dependiendo de la página, ahí hay calendarios, noticias deportivas, marcadores en vivo,
         novedades de los torneos o datos sobre las transmisiones de partidos en vivo.
@@ -143,7 +142,7 @@ export function LeaguesSection() {
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 text-gray-700 text-sm md:text-base">
         {ligas.map(([nombre, bandera, pais]) => (
           <li key={nombre}>
-            {nombre} {bandera} {pais}
+            {nombre} <span aria-hidden="true">{bandera}</span> {pais}
           </li>
         ))}
       </ul>
@@ -188,16 +187,17 @@ export function GuideSection() {
       </p>
       <div className="overflow-x-auto border border-gray-200 rounded-md">
         <table className="w-full text-left text-sm md:text-base">
+          <caption className="sr-only">Compatibilidad por tipo de dispositivo</caption>
           <thead className="bg-[#167a36] text-white">
             <tr>
-              <th className="px-4 py-2 font-semibold">Dispositivo</th>
-              <th className="px-4 py-2 font-semibold">Cómo usarlo</th>
+              <th scope="col" className="px-4 py-2 font-semibold">Dispositivo</th>
+              <th scope="col" className="px-4 py-2 font-semibold">Cómo usarlo</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {dispositivos.map(([disp, uso]) => (
               <tr key={disp} className="hover:bg-gray-50">
-                <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">{disp}</td>
+                <th scope="row" className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">{disp}</th>
                 <td className="px-4 py-2 text-gray-700">{uso}</td>
               </tr>
             ))}
@@ -234,22 +234,21 @@ export function GuideSection() {
         también en los sitios de tu país. Además, hay plataformas en línea que ofrecen gratis
         resúmenes, entrevistas y análisis después de cada partido.
       </p>
-       
-      <p className={p}>    Entra a {' '}
-        <a
-          href="https://futbollibre.onl/"
-          target="_blank"
-          rel="noopener"
-          className="text-[#167a36] font-semibold underline hover:text-green-700"
-        >
-               Fútbol Libre 
-        </a>{' '}
-    y consulta los partidos de fútbol de hoy, los horarios, las competiciones y los canales deportivos en vivo. Sigue los juegos de Argentina, México, Chile y más, y míralos en línea gratis.</p>
+
+      <p className={p}>
+        Entra a{' '}
+        <Link href="/" className={link}>
+          Fútbol Libre
+        </Link>{' '}
+        y consulta los partidos de fútbol de hoy, los horarios, las competiciones y los canales
+        deportivos en vivo. Sigue los juegos de Argentina, México, Chile y más, y míralos en
+        línea gratis.
+      </p>
     </section>
   );
 }
 
-/* 5) Preguntas frecuentes (se abren al hacer clic) */
+/* 5) Preguntas frecuentes (se abren al hacer clic) + schema FAQPage */
 export function FaqSection() {
   const faqs = [
     [
@@ -286,15 +285,32 @@ export function FaqSection() {
     ],
   ];
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es-MX',
+    mainEntity: faqs.map(([q, a]) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  };
+
   return (
     <section className="space-y-3">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <h2 className={h2}>Preguntas frecuentes</h2>
       <div className="border border-gray-200 rounded-md divide-y divide-gray-200 overflow-hidden">
         {faqs.map(([q, a]) => (
           <details key={q} className="group bg-white hover:bg-gray-50">
             <summary className="cursor-pointer select-none list-none px-4 py-3 font-semibold text-gray-900 flex items-center justify-between">
               <span>{q}</span>
-              <span className="text-[#167a36] ml-4 group-open:rotate-180 transition">▼</span>
+              <span aria-hidden="true" className="text-[#167a36] ml-4 group-open:rotate-180 transition">▼</span>
             </summary>
             <p className="px-4 pb-4 text-gray-700 text-sm md:text-base leading-relaxed">{a}</p>
           </details>

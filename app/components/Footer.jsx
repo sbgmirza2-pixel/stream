@@ -10,6 +10,9 @@ const channelLinks = [
   { name: 'Fox Sports 2', href: '/en-vivo/fox-sports-2' },
 ];
 
+// Footer ke titles <p> hain (pehle <h3>): footer headings page ke H1>H2>H3 outline ko kharab karte the
+const footerTitle = 'text-sm font-bold text-gray-900 uppercase tracking-wide mb-3';
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-200 mt-12">
@@ -32,8 +35,8 @@ export default function Footer() {
         </div>
 
         {/* Canales */}
-        <div>
-          <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">Canales</h3>
+        <nav aria-label="Canales">
+          <p className={footerTitle}>Canales</p>
           <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
             {channelLinks.map((link) => (
               <li key={link.href}>
@@ -43,12 +46,13 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         {/* Redes */}
         <div>
-          <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">Síguenos</h3>
+          <p className={footerTitle}>Síguenos</p>
           <div className="flex space-x-3">
+            {/* TODO: href="#" ko asli Telegram/Facebook URL se badlein (rel="noopener noreferrer" target="_blank" ke saath) */}
             <a
               href="#"
               className="px-4 py-2 rounded border border-gray-300 text-sm font-medium text-gray-700 hover:bg-[#167a36] hover:text-white hover:border-[#167a36] transition"
